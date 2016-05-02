@@ -267,6 +267,8 @@ var global = this
           , size
           , gutterSize = options.gutterSize
           , pair
+          , parentFlexDirection = window.getComputedStyle(parent).flexDirection
+          , temp
 
         if (i > 0) {
             pair = {
@@ -292,6 +294,13 @@ var global = this
 
             if (isLast) {
                 pair.bGutterSize = options.gutterSize / 2
+            }
+
+            // if the parent has a reverse flex-direction, switch the pair elements.
+            if (parentFlexDirection === 'row-reverse' || parentFlexDirection === 'column-reverse') {
+                temp = pair.a;
+                pair.a = pair.b;
+                pair.b = temp;
             }
         }
 
