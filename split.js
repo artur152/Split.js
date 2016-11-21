@@ -528,12 +528,12 @@ var global = this
                 pair = pairs[i - 1]
 
                 calculateSizes.call(pair)
-                adjust.call(pair, pair.size - pair.bGutterSize)
+                adjust.call(pair, pair.size - Math.max(pair.bGutterSize, pair.aMin))
             } else {
                 pair = pairs[i]
 
                 calculateSizes.call(pair)
-                adjust.call(pair, pair.aGutterSize)
+                adjust.call(pair, Math.max(pair.aGutterSize, pair.aMin))
             }
         },
         destroy: function () {
